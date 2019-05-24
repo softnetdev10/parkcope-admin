@@ -25,11 +25,58 @@ $(document).ready(function(){
             Name : 'name',
             Value :name
         };
-        console.log(dataName);
+        var dataMiddleName = {
+            Name : 'middle_name',
+            Value : middle_name
+        };
+        var dataFamilyName = {
+            Name : 'family_name',
+            Value : family_name
+        };
+        var dataEmail = {
+            Name : 'email',
+            Value : email
+        };
+        var dataPhoneNumber = {
+            Name : 'phone_number',
+            Value : phone_number
+        };
+                
+        var attributeName = new AmazonCognitoIdentity.CognitoUserAttribute(dataName);
+        var attributeMiddleName = new AmazonCognitoIdentity.CognitoUserAttribute(dataMiddleName);
+        var attributeFamilyName = new AmazonCognitoIdentity.CognitoUserAttribute(dataFamilyName);
+        var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+        var attributePhoneNumber = new AmazonCognitoIdentity.CognitoUserAttribute(dataPhoneNumber);
         
-        var formData = $(this).serializeArray();
-        console.log(formData);
-        event.preventDefault();
+        attributeList.push(attributeName);
+        attributeList.push(attributeMiddleName);
+        attributeList.push(attributeFamilyName);
+        attributeList.push(attributeEmail);
+        attributeList.push(attributePhoneNumber);
+        
+        if (name == '' || middle_name == '' || family_name == '' || password == '') {
+            console.log('Favor ingrese todos los datos requeridos(*).');
+            alert('Favor ingrese todos los datos requeridos(*).');
+            return false;
+        }
+        
+        userPool.signUp(email, password, attributeList, null, function(error, result){
+            if (error) {
+                console.log(error);
+                alert(error.message);
+                return;
+            }else{
+                console.log(result);
+                alert('Usuario creado con éxito!');
+                window.location='https://softnetdev10.github.io/parkcope-admin/index.html';
+            }
+
+        });
+                console.log(dataName);
+
+                var formData = $(this).serializeArray();
+                console.log(formData);
+                event.preventDefault();
         
     });
     
