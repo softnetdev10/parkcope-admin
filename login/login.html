@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+    <title>Parkcope</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Css -->
+    <link href="../bootstrap-assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Style -->
+    <link href="../plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="../plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="../plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="../plugins/Lightbox/dist/css/lightbox.css" rel="stylesheet">
+    <link href="../plugins/Icons/et-line-font/style.css" rel="stylesheet">
+    <link href="../plugins/animate.css/animate.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <!-- Icons Font -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body style="background-color: #0d0d0d">
+    <!-- Preloader
+    ============================================= -->
+    <div class="preloader"><i class="fa fa-circle-o-notch fa-spin fa-2x"></i></div>
+    <!-- Header
+    ============================================= -->
+
+  <section id="services">
+   
+  <div class="container" >
+    <div class="col-md-6 col-md-offset-3  wow fadeInUp" data-wow-delay=".3s">
+        <form class="form-signin" method="POST" action="../admin/index.html">
+            <h2 class="form-signin-heading">Please Login</h2>
+            <div class="row">
+                <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">@</span>
+                <input type="text" name="username" class="form-control" placeholder="Username" required>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            </div>
+            <br/>
+            <button class="btn btn-lg btn-primary" type="submit" style="width:100%">Login</button>
+            <br/>
+            <br/>
+            <a class="btn btn-lg btn-primary " href="../register.php" style="width:100%">Register</a>
+            <br/>
+            <br/>
+            <div class="control-group error" style="display: none;" id="message-error">
+              <div class="controls">
+                <span class="help-inline" style="color:red" id="message-error-content">Please correct the error</span>
+              </div>
+               
+            </div>
+          </form>
+      </div>
+    </div>
+  </section>
+
+    <!-- Footer-->    
+    <footer>
+    <div class="container">
+        <label class="" style="color:white" id="usuario"></label>
+        <h1 class="footer-title">PARKCOPE</h1>
+        <div class="social">
+            <a href="https://es-la.facebook.com/Parkcope/"><i class="fa fa-facebook fa-2x"></i></a>
+            <a href="https://twitter.com/parkcope"><i class="fa fa-twitter fa-2x"></i></a>
+        </div>
+        <h6>&copy; 2019 PARKCOPE SA de CV</h6>
+        <span>
+            <a href="aviso.php">Aviso de privcidad</a>
+            <br>
+            <a href="terminos.php">Términos y Condiciones</a>
+        </span>
+    </div>
+</footer><!--
+    ============================================= -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../bootstrap-assets/js/bootstrap.min.js"></script>
+    <script src="../js/custom.js"></script>
+    <!-- JS PLUGINS -->
+    <script src="../plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script src="../js/jquery.easing.min.js"></script>
+    <!--<script src="plugins/waypoints/jquery.waypoints.min.js"></script>-->
+    <script src="../plugins/countTo/jquery.countTo.js"></script>
+    <script src="../plugins/inview/jquery.inview.min.js"></script>
+    <script src="../plugins/Lightbox/dist/js/lightbox.min.js"></script>
+    <script src="../plugins/WOW/dist/wow.min.js"></script>
+    <!-- GOOGLE MAP -->
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <script type="text/javascript">
+    if(sessionStorage.getItem("errorMessage") !== null){
+        $('#message-error-content').text(sessionStorage.getItem("errorMessage"));
+        $('#message-error').show();
+        sessionStorage.removeItem("errorMessage");
+    }
+    var user = JSON.parse(localStorage.getItem("usuario"));
+    $('#usuario').text(user);
+</script>
+
+</body>
+
+</html>
+
+
