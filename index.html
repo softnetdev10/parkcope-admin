@@ -1,68 +1,453 @@
-<html>
-    <head>
-        <title>AWS Cognito</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-        <script
-          src="https://code.jquery.com/jquery-3.3.1.js"
-          integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-          crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        <script src="./node_modules/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js" type="text/javascript"></script>
-        <!-- <script src="https://sdk.amazonaws.com/js/aws-sdk-2.283.1.min.js"></script> -->
-    </head>
-    <body>
-        <div class="row" style="background-color: #232f3e; margin-bottom: 20px;">
-            <div class="col-10"><h1 class="text-center" style="padding: 20px; color: #dd6b10;">DATOS DEL USUARIO</h1></div>
-            <div class="col-2" style="padding: 30px; cursor: pointer;"><span class="text-primary" id="logout">Cerrar sesión</span></div>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <title>Parkcope</title>
+    <link rel="shortcut icon" href="img/logo/logo.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+
+    <!-- Bootstrap Css -->
+    <link href="bootstrap-assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Style -->
+    <link href="plugins/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="plugins/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="plugins/owl-carousel/owl.transitions.css" rel="stylesheet">
+    <link href="plugins/Lightbox/dist/css/lightbox.css" rel="stylesheet">
+    <link href="plugins/Icons/et-line-font/style.css" rel="stylesheet">
+    <link href="plugins/animate.css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+    <link href="css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+</head>
+
+<body >
+    
+    <!-- Preloader
+	============================================= -->
+    <div class="preloader"><i class="fa fa-circle-o-notch fa-spin fa-2x"></i></div>
+    <!-- Header
+	============================================= -->
+    <!--menu-->
+    <section class="main-header" style="width: 100%">
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="row" style="background-color: #24242a">
+            <div class="container">
+                <div class="navbar-header" style="width:15%">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand img-responsive" href="http://localhost/parcope/index.html"><img src="img/logo/logo.png" class="" alt="logo" style="height:81px;width:66px;"></a>
+                </div>
+                <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
+                            <label style="color: white; margin-right: 10px;" id="usuario"></label>
+                    <div class="col-md-8 col-xs-12 nav-wrap" style="width:80%">
+                        <ul class="nav navbar-nav">
+                            <li><a href="http://localhost/parcope/index.html#video" class="page-scroll">Inicio</a></li>
+                            <li><a href="http://localhost/parcope/index.html#services" class="page-scroll">Servicios</a></li>
+                            <li><a href="http://localhost/parcope/index.html#portfolio" class="page-scroll">Socios</a></li>
+                            <li><a href="http://localhost/parcope/index.html#users" class="page-scroll">Usuarios</a></li>
+                            <li><a href="http://localhost/parcope/index.html#team" class="page-scroll">Quienes Somos</a></li>
+                            <li><a href="http://localhost/parcope/index.html#contact" class="page-scroll">Contacto</a></li>
+                            <!--<li><a href="<?= $set_href_url ?>#contact" class="page-scroll">Contacto</a></li>-->
+                            <li><a href="http://localhost/parcope/registro/register.html" class="page-scroll">Regístrate</a></li>
+                            <!--<li><a href="http://localhost/parcope/index.html#login" class="page-scroll">Login</a></li>-->
+                            <li><a class="page-scroll" data-toggle="modal" data-target="#modalForm">Login</a></li>
+                        </ul>
+                       
+                    </div>
+                </div>
+            </div>
+            </div>
+        </nav>
+
+    </section>
+    <div class="row">
+    <section class="carr-section">
+            <div id="owl-hero" class="owl-carousel owl-theme">
+              <div class="item" style="width: 100%">
+                <img src="img/sliders/banner2.png" alt="" style="max-height:100%;width:100%;">
+              </div>
+              <div class="item" style="width: 100%">
+                <img src="img/sliders/banner3.png" alt="" style="max-height:100%;width:100%;">
+              </div>
+            <!--<div class="item" style="background-image: url(img/sliders/banner1.png); width: 100%">
+            </div>
+            <div class="item" style="background-image: url(img/sliders/banner2.png); width: 100%">
+            </div>
+                <div class="item" style="background-image: url(img/sliders/banner3.png); width: 100%">
+            </div>-->
         </div>
+    </section>
+  </div>
+     <!-- Some Fune Facts
+    ============================================= -->
+    <section id="team">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <p >Usuario: <span id="user" class="text-success"></span></p>
-                    <p >Cognito: <span id="cognito" class="text-success"></span></p>
-                    <p>Id Token: <span id="idToken" class="text-success"></span></p>
+            <h2>¿Quiénes somos?</h2>
+            <hr class="sep">
+            <p>PARKCOPE</p>
+            <p>Es la primera aplicación móvil que ofrece una solución integral para la administración de estacionamientos.  El objetivo de la aplicación es facilitar la búsqueda, el pago, y el uso en general de cualquier tipo de estacionamiento, ahorrando tiempo y dinero a nuestros usuarios.</p>
+            <p>Sectores a los que atiende nuestra aplicación:</p>
+            <p>Estacionamientos Públicos, Privados y Parquímetros</p>
+            <p>Parkcope busca minimizar los tiempos de búsqueda de estacionamiento y filas de espera para realizar pagos, todo desde un dispositivo móvil.</p>
+
+        </div>
+    </section>
+  
+     <!-- area de registro ===============   Modal  -->
+    
+     <div class="modal animated bounceIn" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Area de logueo</h4>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <!--<p class="statusMsg"></p>-->
+                    <div class="cuerpoa" >
+                        <div class="col-md-6">
+                            <img src="img/admin.png" class="img-preview" alt="cinque terre" /><br/><br/><br/>
+                            <a href="http://localhost/parcope/login/login.html">iniciar sesion como encargado</a>
+                            <div class="h-30"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="img/usuario.png" class="img-preview" alt="cinque terre" /><br><br/><br/>
+                            <a href="http://localhost/parcope/login/login.html">iniciar sesion como usuario de parkcope</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-success pull-left " id="registrar" data-dismiss="modal">Registro</button>-->
+<!--                    <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Acceder</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>-->
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
+    </div>
+     <!-- Some Fune Facts ============================================= -->
+    
+    <!-- Services
+	============================================= -->
+    <section id="services">
+        <div class="container">
+            <h2>Nuestros Servicios</h2>
+            <hr class="light-sep">
+            <p>Somos la primera aplicación con servicios integrales de estacionamiento en el mundo</p>
+            <div class="services-box">
+                <div class="row " data-wow-delay=".3s">
+                    <div class="col-md-4" style="font-size:36px;color:white">
+                        <div class="media-left">
+                        <span class="icon-lightbulb"></span></div>
+                        <div class="media-body">
+                            <h3>Localiza</h3>
+                        </div>
+                    </div>
 
-            var poolData = {
-                UserPoolId : 'us-east-1_HG0uHwzZJ', // pool id
-                ClientId : 'ro7fg14h9b9mbpn3hunkj0830' // client id 
-            };
+                    <div class="col-md-4" style="font-size:36px;color:white">
+                        <div class="media-left"><span class="icon-mobile"></span></div>
+                        <div class="media-body">
+                            <h3>Reserva</h3>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4" style="font-size:36px;color:white">
+                        <div class="media-left"><span class="icon-compass"></span></div>
+                        <div class="media-body">
+                            <h3>Paga con Tarjeta</h3>
+                        </div>
+
+                    </div>
+                    </div>
+                   
+                    <div class="row" data-wow-delay=".6s">
+                     <div class="col-md-3 mobile-delete" style="font-size:36px;color:white">
+
+                    </div>
+                         <div class="col-md-3" style="font-size:36px;color:white">
+                           <div class="media-left"><span class="icon-adjustments"></span></div>
+                            <div class="media-body">
+                                <h3>Consulta horarios</h3>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="font-size:36px;color:white">
+                            <div class="media-left"><span class="icon-tools"></span></div>
+                            <div class="media-body">
+                                <h3>Califica establecimientos</h3>
+                            </div>
+
+                        </div>
+                        <div class="col-md-3 mobile-delete" style="font-size:36px;color:white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Process
+	============================================= -->
+    <section id="portfolio" style="padding: 0px;">
+        <section id ="work-process">
+        <div class="container">
+            <h2>Socios</h2>
+            <hr class="sep">
+            <p>Mediante el trabajo en colaboración, nuestro objetivo consiste siempre en crear servicios innovadores. La colaboración entre Parkcope y sus socios comerciales proporciona a nuestros clientes servicios y soluciones de alta calidad.</p>
+            <p>¡Únete a Parkcope y disfruta todos sus beneficios!</p>
+            <div class="row " data-wow-delay=".3s">
+                <div class="col-lg-4">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <p>1.- Afiliación gratuita por lanzamiento</p>
+                </div>
+                <div class="col-lg-4">
+                    <span class="glyphicon glyphicon-log-in"></span>
+                    <p>2.- Integración gratuita de sistemas de administración con PARKCOPE</p>
+                </div>
+                <div class="col-lg-4">
+                    <span class="glyphicon glyphicon-equalizer"></span>
+                    <p>4.- Acceso a dashboard administrativo para control de ingresos, demanda, horarios, historial de servicio, etc</p>
+                </div>
+                 <div class="col-lg-3 mobile-delete">
+                 </div>
+                <div class="col-lg-3">
+                    <span class="glyphicon glyphicon-list-alt"></span>
+                    <p>5.- Facturación electrónica desde PARKCOPE para sus usuarios</p>
+                </div>
+                <div class="col-lg-3">
+                    <span class="glyphicon glyphicon-hdd"></span>
+                    <p>6.- Acceso a nuestra base de datos para publicidad, a través de: sitio web, newsletters, mailings, redes sociales, etc.</p>
+                </div>
+            </div>
+            <p>Regístrate aquí como nuevo socio:</p>
+            <a class="btn btn-transparent" style="background-color:#24242a" href="http://localhost/parcope/registro/register.html">Regístrate</a>
+        </div>
+    </section>
+    <!-- Some Fune Facts
+	============================================= -->
+    <section id="users">
+        <div class="container">
+            <h2>Usuarios </h2>
+            <hr class="light-sep">
             
-            var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-            var cognitoUser = userPool.getCurrentUser();
+            <div class="row " data-wow-delay=".3s">
+                <div class="col-lg-3">
+                    <span class="glyphicon glyphicon-time"></span>
+                    <h5 style="color:white">Consulta los horarios de trabajo de los estacionamientos públicos.</h5>
+                </div>
+                <div class="col-lg-3">
+                    <span class="glyphicon glyphicon-exclamation-sign"></span>
+                    <h5 style="color:white">Genera alertas con tiempo para recargar la cuota de parquímetro.</h5>
+                </div>
+                <div class="col-lg-3">
+                    <span class="glyphicon glyphicon-bullhorn"></span>
+                    <h5 style="color:white">Recomienda a los establecimientos afiliados</h5>
+                </div>
+                <div class="col-lg-3">
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    <h5 style="color:white">Encuentra fácilmente donde estacionaste tu auto.</h5>
+                </div>
+                </div>
+                <div class="row " data-wow-delay=".3s">
+                <div class="col-lg-4">
+                    <span class="glyphicon glyphicon-credit-card"></span>
+                    <h5 style="color:white">Paga la cuota de tu estacionamiento con tarjeta de crédito</h5>
+                </div>
+                <div class="col-lg-4">
+                    <span class="glyphicon glyphicon-screenshot"></span>
+                    <h5 style="color:white">Búsqueda de estacionamientos por ubicación</h5>
+                </div>
+                <div class="col-lg-4">
+                    <span class="glyphicon glyphicon-check"></span>
+                    <h5 style="color:white">Reserva tu lugar de estacionamiento preferido.</h5>
+                </div>
+            </div>
+        </div>
+        </section>
+    </section>
+    <!-- Testimonials
+	============================================= -->
+    <section id="video">
+            <video autoplay="" loop="" muted="" style="width:100%;height:100%;">
+            <source src="http://parkcope.com/videos/PARKCOPE.mp4" type="video/mp4">
+            <!--<source src="http://parkcope.com/wp-content/themes/parklot/images/PARKCOPE.webm" type="video/webm">-->
+          </video>
+    </section>
+ 
+    <!-- Welcome
+    ============================================= -->
+    <section id="welcome" style="width: 100%">
+        <div class="container">
+            <h2>Bienvenidos a <span>Parkcope</span></h2>
+            <hr class="sep">
+            <p>Descarga nuestra app en:</p>
+            <a href="https://play.google.com/store/apps/details?id=com.totaltech.parkcope" target="_blank">
+            <img class=" center-block wow fadeInUp" data-wow-delay=".3s" src="img/welcome/play.png" alt="logo" style="max-width:300px;">
+            </a>
+            <a href="https://appsto.re/mx/H2igib.i" target="_blank">
+            <img class="center-block wow fadeInUp" data-wow-delay=".3s" src="img/welcome/appstore.png" alt="logo" style="max-width:300px;">
+            </a>
+        </div>
+    </section>
+       <!-- Google Map
+    ============================================= 
+    <div id="map"></div>
+    <!-- Footer
+    ============================================= -->
+    <div id="map"></div>
+      <!-- Contact Us
+    ============================================= -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contacto</h2>
+            <hr class="sep">
+            <p>Get In Touch</p>
+            <div class="col-md-6 col-md-offset-3 wow fadeInUp" data-wow-delay=".3s">
+                <form method="post" action="">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Name" name="name" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="Email" name="email" placeholder="Correo">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" name="message" placeholder="Mensaje"></textarea>
+                    </div>
+                    <button type="submit" class="btn-block">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!--area de registro-->
+    <section id="register">
+    <br/>
+        <div class="container">
+        <form class="form-signin" method="POST" action="">
+            <h2>REGISTRO</h2>
+            <hr class="light-sep">
+            <p>CUENTA SOCIO</p>
+            <div class="services-box">
+                <div id="registroSocio">
+                    <div class="container">
+                      <div class="col-md-6 col-md-offset-3  wow fadeInUp" data-wow-delay=".3s">
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="fname" placeholder="Name" required>
+                              </div>
+                            </div>
+                             <div class="col-md-6">
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="lname" placeholder="Apellido" required>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="Correo" required>
+                              </div>
+                            </div>
+                             <div class="col-md-6">
+                              <div class="form-group">
+                                <input type="number" class="form-control" name="phn_number" placeholder="telefono" required>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="user_name" placeholder="Nombre de Usuario" required>
+                              </div>
+                            </div>
+                             <div class="col-md-6">
+                              <div class="form-group">
+                                <input type="text" class="form-control" name="photo" placeholder="fotoSocio" required>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <input type="password" class="form-control" name="password" placeholder="Contraseña" required data-minlength="6">
+                              </div>
+                            </div>
+                             <div class="col-md-6">
+                              <div class="form-group">
+                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirmar Contraseña" required minlength="6">
+                              </div>
+                            </div>
+                        </div>
+                        <br/>
+                            <button class="btn btn-lg btn-primary" type="submit" style="width:100%">Login</button>
+                        <br/>
+                      </div>
+                    </div>
+                </div>
+            </div>
+                        
+          </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <h1 class="footer-title">PARKCOPE</h1>
+            <div class="social">
+                <a href="https://es-la.facebook.com/Parkcope/"><i class="fa fa-facebook fa-2x"></i></a>
+                <a href="https://twitter.com/parkcope"><i class="fa fa-twitter fa-2x"></i></a>
+            </div>
+            <h6>&copy; 2017 PARKCOPE SA de CV</h6>
+            <span>
+                <a href="aviso.php">Aviso de privcidad</a>
+                <br>
+                <a href="terminos.php">Términos y Condiciones</a>
+            </span>
+        </div>
+    </footer>
+    <!--<?php require('footer.php'); ?>-->
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src=”https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js”></script>
+    <script src=”https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js”></script>
 
-            if (cognitoUser != null) {
-                cognitoUser.getSession(function(err, session) {
-                    if (err) {
-                        console.log(err);
-                        window.location='login.html';
-                        return;
-                    }
-                    var dataUser = session.idToken.payload;
-                    $('#cognito').html(dataUser.sub);
-                    $('#user').html(dataUser.email);
-                    $('#idToken').html(session.idToken.jwtToken);
-                    console.log('session validity: ' + session.isValid());
+    <script src="bootstrap-assets/js/bootstrap.min.js"></script>
+    <script src="js/custom.js?2"></script>
+    <!-- JS PLUGINS -->
+    <script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script src="js/jquery.easing.min.js"></script>
+<!--    <script src="plugins/waypoints/jquery.waypoints.min.js"></script>-->
+    <script src="plugins/countTo/jquery.countTo.js"></script>
+    <script src="plugins/inview/jquery.inview.min.js"></script>
+    <script src="plugins/Lightbox/dist/js/lightbox.min.js"></script>
+    <script src="plugins/WOW/dist/wow.min.js"></script>
+    <script src="index.js"></script>
+    <!-- GOOGLE MAP IzaSyC0XBIZYLEJu_RAX32n-Ahpe_9EeCdwtxI-->
 
-                });
-            }else{
-                window.location='login.html';
-            }
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0XBIZYLEJu_RAX32n-Ahpe_9EeCdwtxI"type="text/javascript"></script>
+</body>
 
-
-
-            $('#logout').on('click', function(){
-                cognitoUser.signOut();
-                //cognitoUser.globalSignOut();
-                location.reload();
-
-            });
-        </script>
-    </body>
 </html>
