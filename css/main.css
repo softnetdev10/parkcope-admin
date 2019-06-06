@@ -25,12 +25,37 @@ body {
 html, body { overflow-x: hidden !important; }
 
 /* ==========================================================================
-Typography
+        Estilo para el Modal de logueo
 ========================================================================== */
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+  }
+  
+  .bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+  }
+  
+  /*====================================*/
+
 .color_label {
     color: white;
 }
-.modal {
+#modaltamanio{
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0;
+    position: absolute;  
+
+    height: 100px;
+    padding: 10px;
+}
+
+#modalForm {
   position: fixed;
   top: 0;
   right: 0;
@@ -39,7 +64,7 @@ Typography
   overflow: hidden;
 }
 
-.modal-dialog {
+#modal-dialog1 {
   position: fixed;
   margin: 0;
   width: 100%;
@@ -47,7 +72,7 @@ Typography
   padding: 0;
 }
 
-.modal-content {
+#modal-content1 {
   position: absolute;
   top: 0;
   right: 0;
@@ -58,7 +83,7 @@ Typography
   box-shadow: none;
 }
 
-.modal-header {
+#modal-header1 {
   position: absolute;
   top: 0;
   right: 0;
@@ -69,14 +94,14 @@ Typography
   border: 0;
 }
 
-.modal-title {
+#modal-title1 {
   font-weight: 300;
   font-size: 2em;
-  color: #fff;
+  color: #000;
   line-height: 30px;
 }
 
-.modal-body {
+#modal-body1 {
   position: absolute;
   top: 50px;
   bottom: 60px;
@@ -85,7 +110,7 @@ Typography
   overflow: auto;
 }
 
-.modal-footer {
+#modal-footer1 {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -94,13 +119,18 @@ Typography
   padding: 10px;
   background: #f1f3f5;
 }
-.cuerpoa {
+#cuerpoa1 {
 width: 1000px;
 height: 480px;
 text-align: center;
 margin-left: auto;
 margin-right: auto;
 }
+
+/*==============================================================
+
+==============================================================*/
+
 h1 {
   font-size: 72px;
   color: #fff;

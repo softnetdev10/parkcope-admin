@@ -9,9 +9,7 @@
     <link rel="shortcut icon" href="img/logo/logo.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
+
 
     <!-- Bootstrap Css -->
     <link href="bootstrap-assets/css/bootstrap.min.css" rel="stylesheet">
@@ -62,26 +60,20 @@
                             <li><a href="https://softnetdev10.github.io/parkcope-admin/index.html#users" class="page-scroll">Usuarios</a></li>
                             <li><a href="https://softnetdev10.github.io/parkcope-admin/index.html#team" class="page-scroll">Quienes Somos</a></li>
                             <li><a href="https://softnetdev10.github.io/parkcope-admin/index.html#contact" class="page-scroll">Contacto</a></li>
-<<<<<<< HEAD
-                            <li><a href="<?= $set_href_url ?>#contact" class="page-scroll">Contacto</a></li>
                             <li><a href="https://softnetdev10.github.io/parkcope-admin/registro/register.html" class="page-scroll">Regístrate</a></li>
-                            <li><a href="http://localhost/parcope/index.html#login" class="page-scroll">Login</a></li>
+                            <li><a class="page-scroll" data-toggle="modal" data-target="#modalForm">Login</a></li>
+
                             
-<!--                            <li><a class="page-scroll" data-toggle="modal" data-target="#modalForm">Login</a></li>
-                            <li><a href="http://localhost/parkcope-admin/index.html#video" class="page-scroll">Inicio</a></li>
+<!--                            <li><a href="http://localhost/parkcope-admin/index.html#video" class="page-scroll">Inicio</a></li>
                             <li><a href="http://localhost/parkcope-admin/index.html#services" class="page-scroll">Servicios</a></li>
                             <li><a href="http://localhost/parkcope-admin/index.html#portfolio" class="page-scroll">Socios</a></li>
                             <li><a href="http://localhost/parkcope-admin/index.html#users" class="page-scroll">Usuarios</a></li>
                             <li><a href="http://localhost/parkcope-admin/index.html#team" class="page-scroll">Quienes Somos</a></li>
                             <li><a href="http://localhost/parkcope-admin/index.html#contact" class="page-scroll">Contacto</a></li>
                             <li><a href="http://localhost/parkcope-admin/registro/registro.html" class="page-scroll">Regístrate</a></li>
-                            <li><a class="page-scroll" data-toggle="modal" data-target="#modalForm">Login</a></li>-->
-=======
-                            <!--<li><a href="<?= $set_href_url ?>#contact" class="page-scroll">Contacto</a></li>-->
-                            <li><a href="https://softnetdev10.github.io/parkcope-admin/registro/registro.html" class="page-scroll">Regístrate</a></li>
-                            <!--<li><a href="http://localhost/parcope/index.html#login" class="page-scroll">Login</a></li>-->
-                            <li><a class="page-scroll" data-toggle="modal" data-target="#modalForm">Login</a></li>
->>>>>>> 6a48b42a86f15c652ed7f324e4119a3b9cc8c31a
+                            <li><a class="page-scroll" href="#" data-toggle="modal" data-target="#modalForm">Login</a></li>-->
+
+
                         </ul>
                        
                     </div>
@@ -100,12 +92,6 @@
               <div class="item" style="width: 100%">
                 <img src="img/sliders/banner3.png" alt="" style="max-height:100%;width:100%;">
               </div>
-            <!--<div class="item" style="background-image: url(img/sliders/banner1.png); width: 100%">
-            </div>
-            <div class="item" style="background-image: url(img/sliders/banner2.png); width: 100%">
-            </div>
-                <div class="item" style="background-image: url(img/sliders/banner3.png); width: 100%">
-            </div>-->
         </div>
     </section>
   </div>
@@ -126,22 +112,22 @@
   
      <!-- area de registro ===============   Modal  -->
     
-     <div class="modal animated bounceIn" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+     <div class="modal fade animated bounceIn" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-dialog" id="modal-dialog1">
+             <div class="modal-content" id="modal-content1">
                 <!-- Modal Header -->
-                <div class="modal-header">
+                <div class="modal-header" id="#modal-header1">
                     <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                        <span class="sr-only">Close</span>
+                        <!--<span aria-hidden="true">×</span>-->
+                        <span class="sr-only-focusable" style="color:black">Close</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Area de logueo</h4>
+                    <h4 class="modal-title" id="modal-title1">Area de logueo</h4>
                 </div>
 
                 <!-- Modal Body -->
-                <div class="modal-body">
+                <div class="modal-body" id="modal-body1">
                     <!--<p class="statusMsg"></p>-->
-                    <div class="cuerpoa" >
+                    <div class="cuerpoa" id="cuerpoa1" >
                         <div class="col-md-6">
                             <img src="img/admin.png" class="img-preview" alt="cinque terre" /><br/><br/><br/>
                             <a href="https://softnetdev10.github.io/parkcope-admin/login/login.html">iniciar sesion como encargado</a>
@@ -158,7 +144,7 @@
                 </div>
 
                 <!-- Modal Footer -->
-                <div class="modal-footer">
+                <div class="modal-footer" id="modal-footer1">
                     <!--<button type="button" class="btn btn-success pull-left " id="registrar" data-dismiss="modal">Registro</button>-->
 <!--                    <button type="button" class="btn btn-primary submitBtn" onclick="submitContactForm()">Acceder</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>-->
@@ -166,10 +152,7 @@
             </div>
         </div>
     </div>
-     <!-- Some Fune Facts ============================================= -->
-    
-    <!-- Services
-	============================================= -->
+
     <section id="services">
         <div class="container">
             <h2>Nuestros Servicios</h2>
@@ -226,8 +209,6 @@
         </div>
     </section>
 
-    <!-- Work Process
-	============================================= -->
     <section id="portfolio" style="padding: 0px;">
         <section id ="work-process">
         <div class="container">
@@ -263,8 +244,7 @@
             <a class="btn btn-transparent" style="background-color:#24242a" href="https://softnetdev10.github.io/parkcope-admin/registro/registro.html">Regístrate</a>
         </div>
     </section>
-    <!-- Some Fune Facts
-	============================================= -->
+
     <section id="users">
         <div class="container">
             <h2>Usuarios </h2>
@@ -305,17 +285,14 @@
         </div>
         </section>
     </section>
-    <!-- Testimonials
-	============================================= -->
+
     <section id="video">
             <video autoplay="" loop="" muted="" style="width:100%;height:100%;">
             <source src="http://parkcope.com/videos/PARKCOPE.mp4" type="video/mp4">
             <!--<source src="http://parkcope.com/wp-content/themes/parklot/images/PARKCOPE.webm" type="video/webm">-->
           </video>
     </section>
- 
-    <!-- Welcome
-    ============================================= -->
+
     <section id="welcome" style="width: 100%">
         <div class="container">
             <h2>Bienvenidos a <span>Parkcope</span></h2>
@@ -329,11 +306,7 @@
             </a>
         </div>
     </section>
-       <!-- Google Map
-    ============================================= 
-    <div id="map"></div>
-    <!-- Footer
-    ============================================= -->
+
     <div id="map"></div>
       <!-- Contact Us
     ============================================= -->
@@ -353,6 +326,7 @@
                     <div class="form-group">
                         <textarea class="form-control" rows="3" name="message" placeholder="Mensaje"></textarea>
                     </div>
+                    <a href="registro/registro.html">Registro</a>
                     <button type="submit" class="btn-block">Enviar</button>
                 </form>
             </div>

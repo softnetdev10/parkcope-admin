@@ -67,7 +67,7 @@ $(document).ready(function(){
             }else{
                 console.log(result);
                 alert('Usuario creado con éxito!');
-                window.location='https://softnetdev10.github.io/parkcope-admin/index.html';
+                window.location='http://localhost/parkcope-admin/index.html';
             }
 
         });                
