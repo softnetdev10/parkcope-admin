@@ -5,6 +5,7 @@ $(document).ready(function(){
         ClientId : 'ro7fg14h9b9mbpn3hunkj0830'
     };
     var cognitoUser;
+    var e_mail = $('#inputUsername')[0];
     var inpuCodigo = $('#inpuCodigo')[0];
     var inpcontrasenia = $('#inpcontrasenia')[0];
     var inpcontrasenia2 = $('#inpcontrasenia2')[0];
@@ -12,7 +13,7 @@ $(document).ready(function(){
     
     
     $('#btnRecuperar').on('click', function(){
-        var email = $('#inputUsername').val();
+        var email = e_mail.value;
         if (email == '') {
             alert('favor de ingresar un correo');
             return false;
@@ -65,10 +66,12 @@ $(document).ready(function(){
     });
     
     $('#modalForCogigo').on('hidden.bs.modal', function (e) {
+        $('#inputUsername').empty();
         $('#modalNewPassword').modal('show');
         
         $('#btnFinalizarr').on('click', function(){
-            
+        var btn = $(this).button('loading');
+        btn.button('reset');
         var verificationCode = inpuCodigo.value;
         var password = inpcontrasenia.value;
         var password2 = inpcontrasenia2.value;
@@ -78,79 +81,62 @@ $(document).ready(function(){
                 if (password === password2) {
                     $('.alert').removeClass('alert-danger');
                     $('.alert').addClass('alert-success');
-                    $('.alert').toggle().html('<strong>Exito! </strong>  Las contraseñas coinciden.');
-                    console.log(verificationCode);
-                    console.log(password);
-                    cognitoUser.confirmPassword(verificationCode, password);
-//                    $('#modalNewPassword').modal('hide');
+                    $('.alert').toggle().html('<strong>Exito! </strong>  Las contraseñas coinciden.');                 
+                   
+                    cognitoUser.confirmPassword(verificationCode, password, {
+                        onFailure: (err) => {
+                            console.log(err);
+                        },
+                        onSuccess: () => {
+                            console.log("Success");
+                            $('#modalNewPassword').modal('hide');
+                            $('#inputUsername').empty();                            
+                        }
+                    });
+                   
+                    setTimeout(function(){
+                        $('#mialerta').hide('fade');
+                      
+                    }, 2500);
                 }else{
                     $('.alert').removeClass('alert-success');
                     $('.alert').addClass('alert-danger');
                     $('.alert').toggle().html('<strong>Error! </strong>  Las contraseñas no coinciden.');
+                    setTimeout(function(){
+                        $('#mialerta').hide('fade'); 
+                    }, 2500);
                 }                         
             }else{
                 $('.alert').removeClass('alert-success');
                 $('.alert').addClass('alert-danger');
                 $('.alert').toggle().html('<strong>Error! </strong>  Minimo 5 digitos, obligatorio una letra Mayuscula y un numero.');
+                setTimeout(function(){
+               $('#mialerta').hide('fade'); 
+            }, 2500);
             }
         }else{
             $('.alert').removeClass('alert-success');
             $('.alert').addClass('alert-danger');
             $('.alert').toggle().html('<strong>Error! </strong>  Favor de llenar todos los campos.');
+            setTimeout(function(){
+               $('#mialerta').hide('fade'); 
+            }, 2500);
         }
 
 
         });
     });
     
-    
+    $('#modalNewPassword').on('hidden.bs.modal', function (e){
+        $('#modalExito').modal('show');
+        $('#inputUsername').empty();
+        
+    });
 });
-   
-//  RiChi2019
 
 function validapass(codigo){
     var re = /^[a-z\d]{8,}$/i; 
     var nre = /^([A-Z]{8,}|[a-z]{8,}|\d{8,}|[A-Z\d]{8,}|[A-Za-z]{8,}|[a-z\d]{8,})$/;
     return (re.test(codigo) && !nre.test(codigo));
 }
-//
-//$(document).ready(function(){
-//    
-//        
-//        $('#btnFinalizarr').on('click', function(){
-//        var verificationCode = inpuCodigo.value;
-//        var inpcontrasenia = $('#inpcontrasenia')[0];
-//        var inpcontrasenia2 = $('#inpcontrasenia2')[0];
-//
-//        var password = inpcontrasenia.value;
-//        var password2 = inpcontrasenia2.value;
-//        
-//        if (password != '' || password2 != '') {
-//            if (validapass(password) || validapass(password2)) {
-//                if (password === password2) {
-//                    $('.alert').removeClass('alert-danger');
-//                    $('.alert').addClass('alert-success');
-//                    $('.alert').toggle().html('<strong>Exito! </strong>  Las contraseñas coinciden.');
-//                     cognitoUser.confirmPassword(verificationCode, password, this);
-//                    $('#modalNewPassword').modal('hide');
-//                }else{
-//                    $('.alert').removeClass('alert-success');
-//                    $('.alert').addClass('alert-danger');
-//                    $('.alert').toggle().html('<strong>Error! </strong>  Las contraseñas no coinciden.');
-//                }                         
-//            }else{
-//                $('.alert').removeClass('alert-success');
-//                $('.alert').addClass('alert-danger');
-//                $('.alert').toggle().html('<strong>Error! </strong>  Minimo 5 digitos, obligatorio una letra Mayuscula y un numero.');
-//            }
-//        }else{
-//            $('.alert').removeClass('alert-success');
-//            $('.alert').addClass('alert-danger');
-//            $('.alert').toggle().html('<strong>Error! </strong>  Favor de llenar todos los campos.');
-//        }
-//
-//
-//    });
-//});
-
 

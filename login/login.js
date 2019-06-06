@@ -32,7 +32,8 @@ $(document).ready(function(){
                var idToken = result.idToken.jwtToken;
                
                alert('Inicio sesion con exito!!!');
-               window.location='http://localhost/parkcope-admin/admin/index.html';
+               window.location='https://softnetdev10.github.io/parkcope-admin/admin/index.html';
+//               window.location='http://localhost/parkcope-admin/admin/index.html';
            },
            
            onFailure: function (err){
