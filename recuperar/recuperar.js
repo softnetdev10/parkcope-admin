@@ -83,7 +83,8 @@ $(document).ready(function(){
                         alert('Operacion Exitosa!');
                         $('#modalNewPassword').modal('hide');
                         $('#inputUsername').empty();                            
-                        $('#inputUsername').val('');                            
+                        $('#inputUsername').val('');
+                        window.location='https://softnetdev10.github.io/parkcope-admin/login/login.html';
                     }
                 });                
             }else{
