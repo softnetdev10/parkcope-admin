@@ -15,7 +15,10 @@ $(document).ready(function(){
     $('#btnRecuperar').on('click', function(){
         var email = e_mail.value;
         if (email == '') {
-            alert('favor de ingresar un correo');
+            $('.alerta-correo').toggle().html('<strong>Error! </strong>  Debe de ingresar un correo.');
+            setTimeout(function(){
+                    $('#mialerta3').hide('fade');
+            }, 2500);
             return false;
         }
         
@@ -25,118 +28,96 @@ $(document).ready(function(){
             Username : email,
             Pool : userPool
         }
-        var userData = {
-            Username : email,
-            Pool : userPool
-        };
         
         cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
         
         cognitoUser.forgotPassword({
            onSuccess: function(res){
                console.log(res);
-//               alert('Favor de iniciar sesion');
                window.location='http://localhost/parkcope-admin/login/login.html';                           
            },
            onFailure: function(err){
                console.log(err);
-               alert(err.message);
+               $('.alerta-correo').toggle().html('<strong>Error! </strong> '+err.message+'');
+                setTimeout(function(){
+                        $('#mialerta3').hide('fade');
+                }, 2500);
            },
            inputVerificationCode: function(res){
                console.log(res);
-                $('#modalForCogigo').modal('show');               
+                $('#modalNewPassword').modal('show');               
                
            }
         });
         
-    });
+    });  
     
     $('form').on('click', function(event){
         event.preventDefault();
     });
-    
-    $('#btnRecuperarr').on('click', function(event){
-        var codigo = inpuCodigo.value;
-        if (codigo === '') {
-            console.log('campo vacio');
-            return false;
-        }
-        $('#modalForCogigo').modal('hide');
+      
         
-    });
-    
-    $('#modalForCogigo').on('hidden.bs.modal', function (e) {
-        $('#inputUsername').empty();
-        $('#modalNewPassword').modal('show');
-        
-        $('#btnFinalizarr').on('click', function(){
-        var btn = $(this).button('loading');
-        btn.button('reset');
+    $('#btnFinalizar').on('click', function(){
+
         var verificationCode = inpuCodigo.value;
         var password = inpcontrasenia.value;
         var password2 = inpcontrasenia2.value;
-        
-        if (password != '' || password2 != '') {
-            if (validapass(password) || validapass(password2)) {
-                if (password === password2) {
-                    $('.alert').removeClass('alert-danger');
-                    $('.alert').addClass('alert-success');
-                    $('.alert').toggle().html('<strong>Exito! </strong>  Las contraseñas coinciden.');                 
-                   
-                    cognitoUser.confirmPassword(verificationCode, password, {
-                        onFailure: (err) => {
-                            console.log(err);
-                        },
-                        onSuccess: () => {
-                            console.log("Success");
-                            $('#modalNewPassword').modal('hide');
-                            $('#inputUsername').empty();                            
-                        }
-                    });
-                   
-                    setTimeout(function(){
-                        $('#mialerta').hide('fade');
-                      
-                    }, 2500);
-                }else{
-                    $('.alert').removeClass('alert-success');
-                    $('.alert').addClass('alert-danger');
-                    $('.alert').toggle().html('<strong>Error! </strong>  Las contraseñas no coinciden.');
-                    setTimeout(function(){
-                        $('#mialerta').hide('fade'); 
-                    }, 2500);
-                }                         
-            }else{
-                $('.alert').removeClass('alert-success');
-                $('.alert').addClass('alert-danger');
-                $('.alert').toggle().html('<strong>Error! </strong>  Minimo 5 digitos, obligatorio una letra Mayuscula y un numero.');
+        var valid = /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,})$/;
+
+    if (password != '' || password2 != '') {
+        if (password.match(valid) || password2.match(valid)) {
+            if (password === password2) {
+                $('.alert-park-succe').toggle().html('<strong>Exito! </strong>  Las contraseñas coinciden.');                 
                 setTimeout(function(){
-               $('#mialerta').hide('fade'); 
-            }, 2500);
-            }
+                    $('#mialerta').hide('fade');
+                }, 2000);
+                cognitoUser.confirmPassword(verificationCode, password, {
+                    onFailure: (err) => {
+                        $('.alert-parkcope').toggle().html('<strong>Error! </strong> '+err.message+' ');
+                        setTimeout(function(){
+                            $('#mialerta2').hide('fade'); 
+                        }, 2000);
+                    },
+                    onSuccess: (res) => {
+                        console.log("Success");
+                        alert('Operacion Exitosa!');
+                        $('#modalNewPassword').modal('hide');
+                        $('#inputUsername').empty();                            
+                        $('#inputUsername').val('');                            
+                    }
+                });                
+            }else{
+                $('.alert-parkcope').toggle().html('<strong>Error! </strong>  Las contraseñas no coinciden.');
+                setTimeout(function(){
+                    $('#mialerta2').hide('fade'); 
+                }, 2000);
+            }                         
         }else{
-            $('.alert').removeClass('alert-success');
-            $('.alert').addClass('alert-danger');
-            $('.alert').toggle().html('<strong>Error! </strong>  Favor de llenar todos los campos.');
+            $('.alert-parkcope').toggle().html('<strong>Error! </strong>  Minimo 8 digitos, obligatorio una letra y un numero.');
             setTimeout(function(){
-               $('#mialerta').hide('fade'); 
-            }, 2500);
+           $('#mialerta2').hide('fade'); 
+        }, 2000);
         }
+    }else{
+        $('.alert-parkcope').toggle().html('<strong>Error! </strong>  Favor de llenar todos los campos.');
+        setTimeout(function(){
+           $('#mialerta2').hide('fade'); 
+        }, 2000);
+    }
 
 
-        });
     });
     
-    $('#modalNewPassword').on('hidden.bs.modal', function (e){
-        $('#modalExito').modal('show');
-        $('#inputUsername').empty();
-        
+    $('#btnCerrarCodigo').click(function(){
+        $('#modalForCogigo').modal('hide');
+        $('#modalNewPassword').modal('hide');
+        $('#modalExito').modal('hide');
     });
+    
+    $('#btnCerrarContra').click(function(){
+        $('#modalNewPassword').modal('hide');
+        $('#modalExito').modal('hide');            
+    });
+    
 });
-
-function validapass(codigo){
-    var re = /^[a-z\d]{8,}$/i; 
-    var nre = /^([A-Z]{8,}|[a-z]{8,}|\d{8,}|[A-Z\d]{8,}|[A-Za-z]{8,}|[a-z\d]{8,})$/;
-    return (re.test(codigo) && !nre.test(codigo));
-}
 
