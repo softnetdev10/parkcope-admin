@@ -29,6 +29,7 @@ $(document).ready(function(){
        cognitoUser.authenticateUser(authenticationDetails, {
            onSuccess: function (result){
                var accessToken = result.getAccessToken().getJwtToken();
+               
                var idToken = result.idToken.jwtToken;
                
                alert('Inicio sesion con exito!!!');
@@ -43,64 +44,8 @@ $(document).ready(function(){
        });       
        
        
-    });
-    
-    $('#btnRecuperar').on('click', function(){
-        var email = $('#inpRecupCorreo').val();
-        if (email == '') {
-            alert('favor de ingresar un correo');
-            return false;
-        }
-        
-        var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-        
-        var userData = {
-            Username : email,
-            Pool : userPool
-        }
-        var userData = {
-            Username : email,
-            Pool : userPool
-        };
-        
-        var cognitoUser = AmazonCognitoIdentity.CognitoUser(userData);
-        
-        cognitoUser.forgotPassword({
-           onSuccess: function(res){
-               alert('Favor de iniciar sesion');
-               window.location='http://localhost/parkcope-admin/login/login.html';
-//               $('#forModal').modal('hide');
-//               $('#modalForCogigo').modal('hide');
-//               $('#modalNewPassword').modal('hide');               
-           },
-           onFailure: function(err){
-               concole.log(err);
-               alert(err.message);
-           },
-           inputVerificationCode(){
-               $('#modalForCogigo').modal('hide');
-               var verificationCode = $('#inpuCodigo').val();
-               var newPassword = $('#inpcontrasenia').val();
-               cognitoUser.confirmPassword(verificationCode, newPassword, this);
-           }
-        });
-        
-    });
-    
+    });     
 //    $('form').on('click', function(event){
 //        event.preventDefault();
 //    });
 });
-
-//function submitContactForm(){
-//    $('#modalForCogigo').modal('show');
-//    var correo = $('#inpCorreo').val();
-//    $('#inpuCodigo').val(correo);
-//}
-//
-//function modalNewPassword(){
-//    $('#modalNewPassword').modal('show');
-//    var codigo = $('#inpuCodigo').val();
-//    $('#inpcontrasenia').val(codigo);
-//}
-
