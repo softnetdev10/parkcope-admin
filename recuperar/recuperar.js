@@ -66,17 +66,15 @@ $(document).ready(function(){
 
     if (password != '' || password2 != '') {
         if (password.match(valid) || password2.match(valid)) {
-            if (password === password2) {
-                $('.alert-park-succe').toggle().html('<strong>Exito! </strong>  Las contraseñas coinciden.');                 
-                setTimeout(function(){
-                    $('#mialerta').hide('fade');
-                }, 2000);
+            if (password === password2) {                
                 cognitoUser.confirmPassword(verificationCode, password, {
                     onFailure: (err) => {
+                        $('#inpuCodigo').addClass('Fields');
                         $('.alert-parkcope').toggle().html('<strong>Error! </strong> '+err.message+' ');
                         setTimeout(function(){
-                            $('#mialerta2').hide('fade'); 
-                        }, 2000);
+                            $('#mialerta2').hide('fade');
+                            $('#inpuCodigo').removeClass('Fields');
+                        }, 2500);
                     },
                     onSuccess: (res) => {
                         console.log("Success");
@@ -91,19 +89,19 @@ $(document).ready(function(){
                 $('.alert-parkcope').toggle().html('<strong>Error! </strong>  Las contraseñas no coinciden.');
                 setTimeout(function(){
                     $('#mialerta2').hide('fade'); 
-                }, 2000);
+                }, 2500);
             }                         
         }else{
             $('.alert-parkcope').toggle().html('<strong>Error! </strong>  Minimo 8 digitos, obligatorio una letra y un numero.');
             setTimeout(function(){
            $('#mialerta2').hide('fade'); 
-        }, 2000);
+        }, 2500);
         }
     }else{
         $('.alert-parkcope').toggle().html('<strong>Error! </strong>  Favor de llenar todos los campos.');
         setTimeout(function(){
            $('#mialerta2').hide('fade'); 
-        }, 2000);
+        }, 2500);
     }
 
 
