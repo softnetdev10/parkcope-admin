@@ -2,14 +2,15 @@ $(document).ready(function(){
 //   alert('bienvenido administrador') ;
    
    $('#containerr').highcharts({
-       chart: {type: 'bar'},
-       title: {text: 'Grafica de prueba'},
-       xAxis: {title: {text:'frutas'}, Categorias: ['manzana', 'platyano', 'naranjas']},
-       yAxis: {title: {text: 'Frutas comidas'}},
+       chart: {type : 'line', borderwidth : 0},
+       title: {text: 'Finanzas Parkcope'},
+       xAxis: {title: {text:'Parkcope'}, categories: ["2018","2019", "2020", "2021"]},
+       yAxis: {title: {text: 'Ganancias'}, categories: ['50','100', '150', '200','250','300','350','400','500']},
        series : [
-           {name: 'richi', data:[1,1,4]},
-           {name: 'jose', data:[5,8,2]}
-       ]
-   });
+           {name: 'Parkcope', data:[1,3,5,8]}
+           
+       ]      
+   });   
+    
 });
 
