@@ -15,6 +15,17 @@ html , body{
  height:100%;
  }
 
+.select:invalid { color: gray; }    
+ /*========= clase para el menu ========*/
+ .my-fixed-parkcope {
+    position: fixed;
+    min-height: 120px;
+    width: 240px;
+    text-align: center;
+    word-wrap: break-word;
+    background-color: aquamarine;
+}
+/*====*/
 .daterangepicker .ranges li {
     color: #73879C
 }
@@ -144,14 +155,16 @@ html , body{
     padding: 0 0 4px 0
 }
 .left_col {
-    background: rgba(13, 13, 13, 0.6)
+    background: rgba(13, 13, 13, 0.6);
+    /*position: fixed;*/
 }
 .nav-sm .container.body .col-md-3.left_col {
     min-height: 100%;
     width: 70px;
     padding: 0;
     z-index: 9999;
-    position: absolute
+    /*position: absolute;*/
+    position: fixed;
 }
 .nav-sm .container.body .col-md-3.left_col.menu_fixed {
     position: fixed;
@@ -159,7 +172,9 @@ html , body{
 }
 .nav-sm .container.body .col-md-3.left_col .mCSB_container,
 .nav-sm .container.body .col-md-3.left_col .mCustomScrollBox {
-    overflow: visible
+    overflow: visible;
+    height: 100%
+    
 }
 .nav-sm .hidden-small {
     visibility: hidden
@@ -330,7 +345,7 @@ html , body{
 }
 @media (min-width: 480px) {
     .nav_menu {
-        position: static
+        position: static;
     }
 }
 .nav-md .container.body .col-md-3.left_col {
@@ -338,6 +353,7 @@ html , body{
     width: 230px;
     padding: 0;
     position: absolute;
+    position: fixed;
     display: -ms-flexbox;
     display: flex;
     z-index: 1
@@ -347,7 +363,8 @@ html , body{
     position: fixed
 }
 body .container.body .right_col {
-    background: #F7F7F7
+    background: #F7F7F7;
+    min-height: 100%;
 }
 .nav-md .container.body .right_col {
     padding: 10px 20px 0;

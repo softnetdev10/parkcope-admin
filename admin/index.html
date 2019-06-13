@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,66 +10,45 @@
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">    
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">    
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">    
     <link href="../build/css/custom.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
     <div class="container body">
-      <div class="main_container">
-        
+      <div class="main_container">        
           <div class="col-md-3 left_col">
-            <div class="left_col scroll-view accordion">
+            <div class="left_col scroll-view ">
               <div class="navbar nav_title" style="border: 0;">
                 <a href="index.html" class="site_title"><img src="../img/logo/logo.png" class="" alt="logo" style="height:81px;width:66px;"> <span style="color:#b3ffec">PARKCOPE</span></a>
               </div>
-
-              <div class="clearfix"></div>
-
-              <br />
-
+              <div class="clearfix"></div><br/>
               <!-- sidebar menu -->
               <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                 <div class="menu_section">
-                  <!--<h3 style="color: #b3ffec">General</h3>-->
                   <ul class="nav side-menu">
-                    <li><a style="color: #b3ffec"><i class="fa fa-home" style="color: #b3ffec"></i> Inicio</a>
+                    <li><a id="btnInicio" style="color: #b3ffec"><i class="fa fa-home" style="color: #b3ffec"></i> Inicio</a>
                     </li>
-                    <li><a style="color: #b3ffec"><i class="fa fa-user" style="color: #b3ffec"></i> Perfil</a>
+                    <li><a id="btnPerfil" style="color: #b3ffec"><i class="fa fa-user" style="color: #b3ffec"></i> Perfil</a>
                     </li>
-                    <li><a style="color: #b3ffec"><i class="fa fa-automobile" style="color: #b3ffec"></i> Estacionamiento</a>
+                    <li><a id="btnPersonal" style="color: #b3ffec"><i class="fa fa-user" style="color: #b3ffec"></i> Personal</a>
                     </li>
-                    <li><a style="color: #b3ffec"><i class="fa fa-automobile" style="color: #b3ffec"></i> Operativa</a>
+                    <li><a id="btnEstacionamiento" style="color: #b3ffec"><i class="fa fa-automobile" style="color: #b3ffec"></i> Estacionamiento</a>
                     </li>
-                    <li><a style="color: #b3ffec"><i class="fa fa-automobile" style="color: #b3ffec"></i> Puesto</a>
+                    <li><a id="btnOperativa" style="color: #b3ffec"><i class="fa fa-automobile" style="color: #b3ffec"></i> Operativa</a>
+                    </li>
+                    <li><a  style="color: #b3ffec"><i class="fa fa-automobile" style="color: #b3ffec"></i> Puesto</a>
                     </li>
                   </ul>
                 </div>
-
               </div>
-              <!-- /sidebar menu -->
-
-        <!-- /menu footer buttons -->
-<!--              <div class="sidebar-footer hidden-small">
-                <a data-toggle="tooltip" data-placement="top" title="Settings">
-                  <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                </a>
-                <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                  <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                </a>
-                <a data-toggle="tooltip" data-placement="top" title="Lock">
-                  <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                </a>
-                <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                  <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                </a>
-              </div>-->
-        <!-- /menu footer buttons -->
             </div>
           </div>
-<!-- top navigation -->
+    <!-- top navigation -->
         <div class="top_nav">
           <div class="nav_menu">
             <nav>
@@ -91,40 +69,212 @@
               </ul>
             </nav>
           </div>
-        </div>
-<!-- /top navigation -->
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              
-
-          </div>
-        <!-- page content -->
-        <div class="right_col" role="main">
-                 
-            <div id="containerr" style="width:100%; height:100%;"></div>
-
-              
-        </div>
-            </div>
+        </div>   
+    <!-- /top navigation --> 
+    
       </div>
-        <!-- /footer content -->
+<!--        <section id="inicio" style="min-height: 100%;">-->
+        <div id="inicio" class="right_col parkcope" role="main" >                 
+            <h2 style="text-align: left">Inicio</h2>
+                <div id="containerr" style="width:100%; height:100%;" class="grafica"></div>              
+                <!--<div id="containerrr" style="width:100%; height:100%;" class="grafica"></div>-->              
+        <!--</section>-->          
+        </div>
+            <div class="modal fade animated bounceIn" id="modalPerfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div class="modal-dialog" id="modal-dialog">
+                     <div class="modal-content" id="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header" id="#modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <!--<span aria-hidden="true">×</span>-->
+                                <span class="sr-only-focusable" style="color:black">Close</span>
+                            </button>
+                            <h4 class="modal-title" id="modal-title">Modificacion del Administrador</h4>
+                        </div>
+
+                        <!-- Modal Body -->
+                        <div class="modal-body" id="modal-body">
+                            <!--<p class="statusMsg"></p>-->
+                            <div class="cuerpoa" id="cuerpoa" >
+                                <div class="modal-body mx-3">
+                                <div class="md-form mb-5">
+                                    <!--<i class="fa fa-envelope prefix fa-code"></i>-->
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Ingresa tu codigo asignado</label>
+                                    <input type="number" id="inpuCodigo" class="form-control validate" required><br>
+                                    
+                                </div><br>
+                                <div class="alert alert-success alert-park-succe" id="mialerta" style='display:none;'>
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Error! </strong> Favor de llenar todos los campos.
+                                </div>
+                                <div class="alert alert-danger alert-parkcope" id="mialerta2" style='display:none;'>
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <!--<strong>Error! </strong> Favor de llenar todos los campos.-->
+                                </div>
+                                
+                            </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <div class="modal-footer" id="modal-footer">                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade animated bounceIn" id="addPersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div class="modal-dialog" id="modal-dialog">
+                     <div class="modal-content" id="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header" id="#modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <!--<span aria-hidden="true">×</span>-->
+                                <span class="sr-only-focusable" style="color:black">Close</span>
+                            </button>
+                            <h4 class="modal-title" id="modal-title">Agregar Personal</h4>
+                        </div>
+
+                        <!-- Modal Body -->
+                        <div class="modal-body" id="modal-body">
+                            <!--<p class="statusMsg"></p>-->
+                            <div class="cuerpoa" id="cuerpoa" >
+                                <div class="modal-body mx-3">
+                                <div class="md-form mb-5">
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Ingresa tu nombre</label>
+                                    <input type="text" id="inpuCodigo" class="form-control validate" required>
+                                    
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Ingresa apellido</label>
+                                    <input type="text" id="inpuCodigo" class="form-control validate" required>
+                                    
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">selecciona un puesto</label>
+                                    <select id="inpuCodigo" class="form-control validate" required>
+                                        <option>Seleccione una opcion</option>
+                                        <option>Encargado</option>
+                                    </select>
+                                    
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Ingresa tu usuario</label>
+                                    <input type="email" id="inpuCodigo" class="form-control validate" required>
+                                    
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Ingresa tu contraseña</label>
+                                    <input type="password" id="inpuCodigo" class="form-control validate" required>
+                                    
+                                    <label data-error="wrong" data-success="right" for="defaultForm-email">Confirmar Contraseña</label>
+                                    <input type="password" id="inpuCodigo" class="form-control validate" required>
+                                    
+                                </div>
+                                <div class="alert alert-success alert-park-succe" id="mialerta" style='display:none;'>
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Error! </strong> Favor de llenar todos los campos.
+                                </div>
+                                <div class="alert alert-danger alert-parkcope" id="mialerta2" style='display:none;'>
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                </div>
+                                
+                            </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary submitBtn" id="btnFinalizar">Finalizar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <div class="modal-footer" id="modal-footer">                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade animated bounceIn" id="addEstacionamiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                 <div class="modal-dialog" id="modal-dialog">
+                     <div class="modal-content" id="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header" id="#modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <!--<span aria-hidden="true">×</span>-->
+                                <span class="sr-only-focusable" style="color:black">Close</span>
+                            </button>
+                            <h4 class="modal-title" id="modal-title">Agregar Personal</h4>
+                        </div>
+
+                        <!-- Modal Body -->
+                        <div class="modal-body" id="modal-body">
+                            <!--<p class="statusMsg"></p>-->
+                            <div class="cuerpoa" id="cuerpoa" >
+                                <div class="modal-body mx-3 ">
+                                <div class="md-form mb-5">
+                                    <input type="text" id="inpuCodigo" class="form-control validate" required placeholder="Nombre de establecimiento">
+                                    
+                                    
+                                    <select id="inpuCodigo" class="form-control validate" required>
+                                        <option value="" disabled selected hidden>Tipo de establecimiento</option>
+                                        <option>Encargado</option>
+                                    </select>
+                                    
+                                    <select id="inpuCodigo" class="form-control validate" required >
+                                        <option value="" disabled selected hidden>Pais</option>
+                                        <option>Mexico</option>
+                                    </select>
+                                    
+                                    <select id="inpuCodigo" class="form-control validate" required >
+                                        <option value="" disabled selected hidden>Estado</option>
+                                        <option>Nuevo leon</option>
+                                    </select>
+                                    
+                                    <select id="inpuCodigo" class="form-control validate" required >
+                                        <option value="" disabled selected hidden>Municipio</option>
+                                        <option>Monterrey</option>
+                                    </select>
+                                    
+                                    <input type="email" id="inpuCodigo" class="form-control validate" required placeholder="Colonia">
+                                    
+                                    <input type="password" id="inpuCodigo" class="form-control validate" required placeholder="numero">
+                                    
+                                    <input type="password" id="inpuCodigo" class="form-control validate" required placeholder="Codigo postal">
+                                    
+                                </div>
+                                <div class="alert alert-success alert-park-succe" id="mialerta" style='display:none;'>
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Error! </strong> Favor de llenar todos los campos.
+                                </div>
+                                <div class="alert alert-danger alert-parkcope" id="mialerta2" style='display:none;'>
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                </div>
+                                
+                            </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary submitBtn" id="btnFinalizar">Finalizar</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        </div>
+
+                        <!-- Modal Footer -->
+                        <div class="modal-footer" id="modal-footer">                    
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <<script src="../node_modules/highcharts/highcharts.src.js"></script>
+    <script src="../node_modules/highcharts/highcharts.src.js"></script>
 
     <!-- Bootstrap -->
     <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <<script src="index.js"></script>
+    <script src="index.js"></script>
+    <script src="inicio.js"></script>
     <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
 
     <script src="../build/js/custom.js?2"></script>
-    <script type="text/javascript">
+<!--    <script type="text/javascript">
         $('.user-name').html(JSON.parse(localStorage.getItem("usuario")));
                 
-    </script>
+    </script>-->
   </body>
 </html>
